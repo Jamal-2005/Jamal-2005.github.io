@@ -690,52 +690,6 @@ ul { list-style: none; }
 }
 
 /* =============================================
-   EDUCATION
-   ============================================= */
-.edu-list { display: flex; flex-direction: column; }
-
-.edu-item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 16px 40px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.edu-item:first-child { border-top: 1px solid var(--border); }
-
-.edu-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.edu-degree {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-
-.edu-score {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  align-self: center;
-}
-
-.edu-school {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  font-weight: 300;
-  grid-column: 1 / -1;
-  margin-top: -8px;
-}
-
-/* =============================================
    CONTACT
    ============================================= */
 .contact.section { background: var(--bg-2); }
@@ -819,40 +773,85 @@ ul { list-style: none; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-card { position: static; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 48px; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr 1fr; }
   .project-card + .project-card { border-left: none; border-top: 1px solid var(--border); }
+  .project-card:nth-child(2) { border-left: 1px solid var(--border); border-top: none; }
   .timeline-item { grid-template-columns: 1fr; gap: 12px; }
   .timeline-left { flex-direction: row; justify-content: space-between; align-items: center; }
 }
 
 @media (max-width: 768px) {
-  :root { --section-gap: 80px; }
+  :root {
+    --section-gap: 72px;
+  }
 
-  .nav { padding: 0 24px; }
+  /* Nav */
+  .nav { padding: 0 20px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .mobile-menu { display: block; padding: 24px 24px 32px; }
+  .mobile-menu { display: block; padding: 20px 20px 28px; }
 
-  .hero { padding: calc(var(--nav-h) + 24px) 24px 60px; }
-  .hero-scroll { left: 24px; }
+  /* Hero */
+  .hero { padding: calc(var(--nav-h) + 20px) 20px 80px; min-height: 100svh; }
+  .hero-scroll { left: 20px; bottom: 32px; }
+  .hero-name { font-size: clamp(2.8rem, 11vw, 4.5rem); }
+  .hero-desc { font-size: 0.95rem; max-width: 100%; }
+  .hero-actions { flex-direction: column; gap: 12px; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 14px 24px; }
 
-  .container { padding: 0 24px; }
+  /* Containers */
+  .container { padding: 0 20px; }
 
-  .about-stats { gap: 28px; }
+  /* About */
+  .about-stats { flex-direction: column; gap: 24px; padding-top: 32px; }
+  .stat-num { font-size: 2.2rem; }
 
-  .skills-grid { grid-template-columns: 1fr; gap: 32px; }
+  /* Timeline */
+  .timeline-item { grid-template-columns: 1fr; gap: 10px; }
+  .timeline-left { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .timeline-right { padding-left: 24px; }
+  .timeline-dot { width: 8px; height: 8px; top: 6px; }
 
-  .edu-item { grid-template-columns: 1fr; }
-  .edu-score { align-self: start; }
+  /* Projects */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    border-radius: 10px;
+  }
+  .project-card + .project-card {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .project-card:nth-child(2) {
+    border-left: none;
+  }
+  .project-card { padding: 28px 24px 22px; }
 
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Contact */
+  .contact-links { flex-direction: column; gap: 20px; }
+
+  /* Footer */
   .footer .container { flex-direction: column; gap: 8px; text-align: center; }
-
-  .hero-name { font-size: clamp(3rem, 12vw, 5rem); }
 }
 
 @media (max-width: 480px) {
-  .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 0.85rem; }
-  .hero-desc { font-size: 0.95rem; }
-  .about-stats { flex-direction: column; }
-  .stat-num { font-size: 2rem; }
+  :root { --section-gap: 60px; }
+
+  .hero-name { font-size: clamp(2.4rem, 13vw, 3.5rem); }
+  .hero-badge { font-size: 0.72rem; padding: 5px 12px; }
+  .section-title { font-size: 1.75rem; }
+
+  .card-inner { padding: 22px 20px; }
+  .focus-list li { font-size: 0.85rem; }
+
+  .timeline-tags { gap: 6px; }
+  .timeline-tags span { font-size: 0.68rem; padding: 3px 8px; }
+
+  .project-body h3 { font-size: 1rem; }
+  .project-body p { font-size: 0.85rem; }
+
+  .contact-email { font-size: 0.95rem; word-break: break-all; }
+  .contact-inner h2 { font-size: 1.75rem; }
 }
