@@ -4,7 +4,7 @@ Personal portfolio website for a Data Engineer, built with vanilla HTML, CSS, an
 
 ## 🚀 Live Site
 
-Deploy via GitHub Pages: `https://<your-username>.github.io/<repo-name>/`
+Deploy via GitHub Pages: 'https://jamal-2005.github.io/'
 
 ## 📁 Project Structure
 
