@@ -267,6 +267,26 @@ ul { list-style: none; }
 }
 .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
+.btn-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 14px 24px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+}
+.btn-resume:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
 .btn-secondary {
   border: 1px solid var(--border);
   color: var(--text-muted);
@@ -797,7 +817,7 @@ ul { list-style: none; }
   .hero-name { font-size: clamp(2.8rem, 11vw, 4.5rem); }
   .hero-desc { font-size: 0.95rem; max-width: 100%; }
   .hero-actions { flex-direction: column; gap: 12px; }
-  .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 14px 24px; }
+  .btn-primary, .btn-secondary, .btn-resume { width: 100%; text-align: center; padding: 14px 24px; justify-content: center; }
 
   /* Containers */
   .container { padding: 0 20px; }
