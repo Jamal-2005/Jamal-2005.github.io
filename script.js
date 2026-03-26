@@ -1,179 +1,169 @@
 /* =============================================
-   PIPELINE CANVAS ANIMATION
+   PIPELINE CANVAS — DARK THEME
    ============================================= */
 (function () {
   const canvas = document.getElementById('pipelineCanvas');
   const ctx = canvas.getContext('2d');
-
   let W, H, nodes, packets, animId;
 
-  const COLORS = {
-    node: 'rgba(0,0,0,0.07)',
-    nodeStroke: 'rgba(0,0,0,0.12)',
-    edge: 'rgba(0,0,0,0.05)',
-    packetColors: [
-      'rgba(100,160,240,0.55)',
-      'rgba(80,200,140,0.5)',
-      'rgba(220,170,90,0.5)',
-      'rgba(180,120,220,0.45)',
-    ],
-    label: 'rgba(0,0,0,0.18)',
-  };
+  const BG       = '#0e0e0e';
+  const NODE_F   = 'rgba(255,255,255,0.04)';
+  const NODE_S   = 'rgba(255,255,255,0.10)';
+  const EDGE_C   = 'rgba(255,255,255,0.04)';
+  const LABEL_C  = 'rgba(255,255,255,0.12)';
+  const PACKETS  = [
+    'rgba(100,180,255,0.7)',
+    'rgba(80,220,150,0.65)',
+    'rgba(212,184,150,0.7)',
+    'rgba(200,130,240,0.6)',
+    'rgba(255,200,80,0.6)',
+  ];
 
-  const STAGES = ['Raw', 'Ingest', 'Stage', 'Transform', 'Mart', 'Serve'];
-  const STAGE_W = 130;
-  const STAGE_H = 40;
+  const STAGES = ['Raw','Ingest','Stage','Transform','Mart','Serve'];
+  const COL_W  = 140;
+  const ROW_H  = 190;
 
   function resize() {
-    W = canvas.width = window.innerWidth;
+    W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
     buildGraph();
   }
 
   function buildGraph() {
     nodes = [];
-    const rows = Math.ceil(H / 200) + 2;
-    const cols = Math.ceil(W / STAGE_W) + 1;
+    const cols = Math.ceil(W / COL_W) + 2;
+    const rows = Math.ceil(H / ROW_H) + 2;
 
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        const jitterX = (Math.random() - 0.5) * 30;
-        const jitterY = (Math.random() - 0.5) * 20;
+        const jx = (Math.random() - 0.5) * 28;
+        const jy = (Math.random() - 0.5) * 22;
         nodes.push({
-          x: c * STAGE_W - STAGE_W / 2 + jitterX,
-          y: r * 200 - 60 + jitterY,
+          x: c * COL_W - COL_W * 0.3 + jx,
+          y: r * ROW_H - ROW_H * 0.3 + jy,
           label: STAGES[c % STAGES.length],
-          r: 5 + Math.random() * 3,
+          r: 4 + Math.random() * 3,
+          edges: [],
         });
       }
     }
 
-    // Build edges: each node connects to 2-3 rightward neighbours
-    nodes.forEach((n, i) => {
-      n.edges = [];
-      const candidates = nodes.filter(
-        (m, j) => j !== i && m.x > n.x && m.x - n.x < STAGE_W * 2.2 && Math.abs(m.y - n.y) < 220
+    // Connect each node to 2–3 right/down neighbours
+    nodes.forEach(n => {
+      const near = nodes.filter(m =>
+        m !== n &&
+        m.x > n.x &&
+        m.x - n.x < COL_W * 2.4 &&
+        Math.abs(m.y - n.y) < ROW_H * 1.5
       );
-      candidates.sort(() => Math.random() - 0.5);
-      n.edges = candidates.slice(0, 2 + Math.floor(Math.random() * 2));
+      near.sort(() => Math.random() - 0.5);
+      n.edges = near.slice(0, 2 + Math.floor(Math.random() * 2));
     });
 
     packets = [];
-    for (let i = 0; i < 28; i++) spawnPacket();
+    for (let i = 0; i < 32; i++) spawnPacket(true);
   }
 
-  function spawnPacket() {
-    // Start from a random left-side node
-    const starts = nodes.filter(n => n.x < STAGE_W);
+  function spawnPacket(randomProgress) {
+    const starts = nodes.filter(n => n.x < COL_W);
     const src = starts[Math.floor(Math.random() * starts.length)];
     if (!src || !src.edges.length) return;
     packets.push({
       src,
       dst: src.edges[Math.floor(Math.random() * src.edges.length)],
-      t: Math.random(),        // 0-1 progress along edge
-      speed: 0.0018 + Math.random() * 0.0025,
-      color: COLORS.packetColors[Math.floor(Math.random() * COLORS.packetColors.length)],
-      size: 3.5 + Math.random() * 3,
+      t: randomProgress ? Math.random() : 0,
+      speed: 0.0016 + Math.random() * 0.0022,
+      color: PACKETS[Math.floor(Math.random() * PACKETS.length)],
+      size: 3 + Math.random() * 3.5,
       trail: [],
     });
   }
 
-  function drawEdge(a, b) {
-    // Smooth bezier pipe
-    const mx = (a.x + b.x) / 2;
-    ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    ctx.bezierCurveTo(mx, a.y, mx, b.y, b.x, b.y);
-    ctx.strokeStyle = COLORS.edge;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function bezierPoint(ax, ay, bx, by, t) {
+  function bezPt(ax, ay, bx, by, t) {
     const mx = (ax + bx) / 2;
-    const x =
-      (1 - t) * (1 - t) * ax +
-      2 * (1 - t) * t * mx +
-      t * t * bx;
-    // Split control: first half from ax to mx at ay, second mx to bx at by
-    const cy1 = ay, cy2 = by;
-    const y =
-      (1 - t) * (1 - t) * ay +
-      2 * (1 - t) * t * ((ay + by) / 2) +
-      t * t * by;
+    const my = (ay + by) / 2;
+    const x = (1-t)*(1-t)*ax + 2*(1-t)*t*mx + t*t*bx;
+    const y = (1-t)*(1-t)*ay + 2*(1-t)*t*my + t*t*by;
     return { x, y };
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    // Draw edges
+    // Edges
     nodes.forEach(n => {
-      n.edges.forEach(m => drawEdge(n, m));
+      n.edges.forEach(m => {
+        const mx = (n.x + m.x) / 2;
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.bezierCurveTo(mx, n.y, mx, m.y, m.x, m.y);
+        ctx.strokeStyle = EDGE_C;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
     });
 
-    // Draw nodes
+    // Nodes
     nodes.forEach(n => {
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = COLORS.node;
+      ctx.fillStyle = NODE_F;
       ctx.fill();
-      ctx.strokeStyle = COLORS.nodeStroke;
+      ctx.strokeStyle = NODE_S;
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Stage label
-      ctx.font = `300 9px 'DM Mono', monospace`;
-      ctx.fillStyle = COLORS.label;
+      ctx.font = `300 8px 'DM Mono', monospace`;
+      ctx.fillStyle = LABEL_C;
       ctx.textAlign = 'center';
       ctx.fillText(n.label, n.x, n.y - n.r - 4);
     });
 
-    // Draw packets with trails
+    // Packets + trails
     packets.forEach(p => {
-      const pos = bezierPoint(p.src.x, p.src.y, p.dst.x, p.dst.y, p.t);
-
-      // Draw trail
+      const pos = bezPt(p.src.x, p.src.y, p.dst.x, p.dst.y, p.t);
       p.trail.push({ x: pos.x, y: pos.y });
-      if (p.trail.length > 14) p.trail.shift();
+      if (p.trail.length > 16) p.trail.shift();
 
       for (let i = 1; i < p.trail.length; i++) {
-        const alpha = i / p.trail.length;
+        const a = i / p.trail.length;
         ctx.beginPath();
-        ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
+        ctx.moveTo(p.trail[i-1].x, p.trail[i-1].y);
         ctx.lineTo(p.trail[i].x, p.trail[i].y);
-        ctx.strokeStyle = p.color.replace(/[\d.]+\)$/, `${alpha * 0.6})`);
-        ctx.lineWidth = p.size * alpha * 0.7;
+        ctx.strokeStyle = p.color.replace(/[\d.]+\)$/, `${(a * 0.65).toFixed(2)})`);
+        ctx.lineWidth = p.size * a * 0.65;
         ctx.lineCap = 'round';
         ctx.stroke();
       }
 
-      // Draw packet dot
+      // Glow dot
+      const grd = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, p.size * 1.8);
+      grd.addColorStop(0, p.color);
+      grd.addColorStop(1, p.color.replace(/[\d.]+\)$/, '0)'));
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, p.size * 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, p.size / 2, 0, Math.PI * 2);
       ctx.fillStyle = p.color;
       ctx.fill();
 
-      // Advance
       p.t += p.speed;
       if (p.t >= 1) {
-        // Hop to next node
         const arrived = p.dst;
         if (arrived.edges && arrived.edges.length) {
           p.src = arrived;
           p.dst = arrived.edges[Math.floor(Math.random() * arrived.edges.length)];
-          p.t = 0;
-          p.trail = [];
+          p.t = 0; p.trail = [];
         } else {
-          // respawn
-          Object.assign(p, { t: 0, trail: [] });
-          const starts = nodes.filter(n => n.x < STAGE_W);
+          const starts = nodes.filter(n => n.x < COL_W);
           const src = starts[Math.floor(Math.random() * starts.length)];
           if (src && src.edges.length) {
             p.src = src;
             p.dst = src.edges[Math.floor(Math.random() * src.edges.length)];
+            p.t = 0; p.trail = [];
           }
         }
       }
@@ -192,8 +182,6 @@
    ============================================= */
 const filterBtns = document.querySelectorAll('.filter-btn');
 const chips = document.querySelectorAll('.chip');
-
-// Init all as visible
 chips.forEach(c => c.classList.add('visible'));
 
 filterBtns.forEach(btn => {
@@ -201,13 +189,10 @@ filterBtns.forEach(btn => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.filter;
-
     chips.forEach((chip, i) => {
       const match = filter === 'all' || chip.dataset.cat === filter;
       chip.classList.remove('hidden', 'visible');
-      setTimeout(() => {
-        chip.classList.add(match ? 'visible' : 'hidden');
-      }, i * 18);
+      setTimeout(() => chip.classList.add(match ? 'visible' : 'hidden'), i * 15);
     });
   });
 });
@@ -216,9 +201,7 @@ filterBtns.forEach(btn => {
    NAV SCROLL
    ============================================= */
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
 
 /* =============================================
    HAMBURGER
@@ -243,11 +226,11 @@ const observer = new IntersectionObserver(
   entries => entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   }),
-  { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
 );
 document.querySelectorAll('.section, .proj-item, .exp-item, .stat').forEach((el, i) => {
   el.classList.add('fade-in');
-  el.style.transitionDelay = `${i * 30}ms`;
+  el.style.transitionDelay = `${i * 28}ms`;
   observer.observe(el);
 });
 
