@@ -11,6 +11,9 @@
 </head>
 <body>
 
+  <!-- PIPELINE CANVAS BACKGROUND -->
+  <canvas id="pipelineCanvas"></canvas>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="#home" class="nav-logo">SJR</a>
@@ -49,6 +52,8 @@
     <div class="hero-body">
       <div class="hero-photo-col">
         <img src="profile.png" alt="Syed Jamal Ur Rahman" class="hero-img" />
+        <div class="img-fade-right"></div>
+        <div class="img-fade-bottom"></div>
       </div>
       <h1 class="hero-name">
         <span>Syed<br>Jamal</span>
@@ -166,13 +171,33 @@
   <section class="section skills" id="skills">
     <div class="sec-label">Skills</div>
     <div class="sec-content">
-      <div class="skill-row"><span class="skill-cat">Languages</span><span class="skill-val">Python · SQL · Scala</span></div>
-      <div class="skill-row"><span class="skill-cat">Data Engineering</span><span class="skill-val">Apache Spark · PySpark · Databricks · dbt · ETL/ELT · Snowflake</span></div>
-      <div class="skill-row"><span class="skill-cat">Cloud</span><span class="skill-val">AWS (Amazon Web Services)</span></div>
-      <div class="skill-row"><span class="skill-cat">Orchestration</span><span class="skill-val">Apache Airflow</span></div>
-      <div class="skill-row"><span class="skill-cat">Tools</span><span class="skill-val">Git · Unity Catalog · Confluence</span></div>
-      <div class="skill-row"><span class="skill-cat">Practices</span><span class="skill-val">Agile / Scrum</span></div>
-      <div class="skill-row"><span class="skill-cat">Certifications</span><span class="skill-val">HP Life Data Analysis · Applied Data Science · SQL Certification</span></div>
+      <div class="skills-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="languages">Languages</button>
+        <button class="filter-btn" data-filter="engineering">Engineering</button>
+        <button class="filter-btn" data-filter="cloud">Cloud &amp; Tools</button>
+        <button class="filter-btn" data-filter="certs">Certifications</button>
+      </div>
+      <div class="skills-chips">
+        <span class="chip" data-cat="languages">Python</span>
+        <span class="chip" data-cat="languages">SQL</span>
+        <span class="chip" data-cat="languages">Scala</span>
+        <span class="chip" data-cat="engineering">Apache Spark</span>
+        <span class="chip" data-cat="engineering">PySpark</span>
+        <span class="chip" data-cat="engineering">Databricks</span>
+        <span class="chip" data-cat="engineering">dbt</span>
+        <span class="chip" data-cat="engineering">ETL / ELT</span>
+        <span class="chip" data-cat="engineering">Snowflake</span>
+        <span class="chip" data-cat="cloud">AWS</span>
+        <span class="chip" data-cat="cloud">Apache Airflow</span>
+        <span class="chip" data-cat="cloud">Git</span>
+        <span class="chip" data-cat="cloud">Unity Catalog</span>
+        <span class="chip" data-cat="cloud">Confluence</span>
+        <span class="chip" data-cat="cloud">Agile / Scrum</span>
+        <span class="chip" data-cat="certs">HP Life Data Analysis</span>
+        <span class="chip" data-cat="certs">Applied Data Science</span>
+        <span class="chip" data-cat="certs">SQL Certification</span>
+      </div>
     </div>
   </section>
 
