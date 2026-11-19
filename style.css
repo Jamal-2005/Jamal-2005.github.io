@@ -10,7 +10,8 @@
   --ink-mid: #444444;
   --ink-light: #8a8a8a;
   --line: #e4e4e2;
-  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --head: 'Plus Jakarta Sans', 'DM Sans', system-ui, sans-serif;
   --pad: 56px;
   --nav-h: 64px;
   --max: 1180px;
@@ -52,6 +53,7 @@ em { font-style: normal; color: var(--ink-light); }
 .nav.scrolled { border-color: var(--line); }
 
 .nav-logo {
+  font-family: var(--head);
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -170,6 +172,7 @@ em { font-style: normal; color: var(--ink-light); }
 .img-fade-right, .img-fade-bottom, .img-fade-top { display: none; }
 
 .hero-name {
+  font-family: var(--head);
   display: flex;
   flex-direction: column;
   font-size: clamp(3rem, 7vw, 6.5rem);
@@ -223,6 +226,7 @@ em { font-style: normal; color: var(--ink-light); }
    ABOUT
    ============================================= */
 .about-headline {
+  font-family: var(--head);
   font-size: clamp(1.7rem, 3vw, 2.5rem);
   font-weight: 500;
   line-height: 1.25;
@@ -246,6 +250,7 @@ em { font-style: normal; color: var(--ink-light); }
 }
 .stat { display: flex; flex-direction: column; gap: 8px; }
 .stat-n {
+  font-family: var(--head);
   font-size: 3rem;
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -269,6 +274,7 @@ em { font-style: normal; color: var(--ink-light); }
 .exp-item { width: 100%; }
 .exp-header { margin-bottom: 24px; }
 .exp-header h3 {
+  font-family: var(--head);
   font-size: clamp(1.4rem, 2.2vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -282,6 +288,39 @@ em { font-style: normal; color: var(--ink-light); }
   gap: 4px 24px;
   font-size: 0.82rem;
   color: var(--ink-light);
+}
+
+.exp-project {
+  background: var(--surface);
+  padding: 24px 28px;
+  margin-bottom: 28px;
+}
+.exp-project-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+.exp-project h4 {
+  font-family: var(--head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.exp-desc { font-size: 0.93rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 12px; }
+.exp-env { font-size: 0.82rem; color: var(--ink-light); line-height: 1.6; }
+.exp-env strong { color: var(--ink); font-weight: 500; }
+.exp-sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 14px;
 }
 
 .exp-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
@@ -355,6 +394,7 @@ em { font-style: normal; color: var(--ink-light); }
    CONTACT
    ============================================= */
 .contact-heading {
+  font-family: var(--head);
   font-size: clamp(2.8rem, 6.5vw, 5.5rem);
   font-weight: 600;
   line-height: 1.02;
