@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Syed Jamal Ur Rahman — Data Engineer</title>
+  <title>Syed Jamal Ur Rahman — Lead Data Engineer</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +20,6 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -36,7 +35,6 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" class="mobile-link">About</a>
     <a href="#experience" class="mobile-link">Experience</a>
-    <a href="#projects" class="mobile-link">Projects</a>
     <a href="#skills" class="mobile-link">Skills</a>
     <a href="#contact" class="mobile-link">Contact</a>
     <a href="My_Resume.pdf" download="Syed_Jamal_Resume.pdf" target="_blank" rel="noopener" class="mobile-link">↓ Resume</a>
@@ -63,8 +61,8 @@
     </div>
 
     <div class="hero-foot">
-      <span class="hero-role">Data Engineer</span>
-      <p class="hero-desc">Building scalable pipelines &amp; transforming raw data into analytics-ready datasets.</p>
+      <span class="hero-role">Lead Data Engineer</span>
+      <p class="hero-desc">4+ years building scalable pipelines on AWS &amp; Azure — turning raw data into analytics-ready datasets.</p>
     </div>
   </section>
 
@@ -75,21 +73,21 @@
     <div class="sec-label">About</div>
     <div class="sec-content">
       <h2 class="about-headline">
-        Aspiring Data Engineer skilled in Python, SQL, PySpark, and Databricks —
-        passionate about <em>scalable data systems.</em>
+        Lead Data Engineer with 4+ years across Spark, Databricks, AWS and Azure —
+        building <em>scalable data platforms.</em>
       </h2>
       <div class="about-cols">
-        <p>I specialize in building end-to-end ETL/ELT workflows and analytical infrastructure. My focus is turning messy raw data into clean, reliable datasets that power real decisions.</p>
-        <p>Currently pursuing my B.E. in Computer Science &amp; Data Science at Lords Institute of Engineering and Technology. CGPA: 8.2/10.</p>
+        <p>I design and run end-to-end ETL/ELT pipelines on medallion architecture, from Hadoop-ecosystem foundations (HDFS, Hive, HBase, Sqoop) to modern PySpark and Databricks stacks, with hands-on Spark memory tuning. I've also built GenAI applications using RAG pipelines, LangChain and LangGraph, integrating vector databases and embedding models with data pipelines.</p>
+        <p>B.E. in Computer Science (Data Science) from Lords Institute of Engineering and Technology, graduated 2026. CGPA: 8.2/10.</p>
       </div>
       <div class="stats-row">
         <div class="stat">
-          <span class="stat-n">30%</span>
-          <span class="stat-l">Manual effort reduced via automation</span>
+          <span class="stat-n">4+</span>
+          <span class="stat-l">Years of professional data engineering</span>
         </div>
         <div class="stat">
-          <span class="stat-n">3+</span>
-          <span class="stat-l">Data engineering projects built</span>
+          <span class="stat-n">2</span>
+          <span class="stat-l">Enterprise data platforms — Liberty Mutual &amp; Wayfair</span>
         </div>
         <div class="stat">
           <span class="stat-n">8.2</span>
@@ -107,75 +105,53 @@
     <div class="sec-content">
       <div class="exp-item">
         <div class="exp-header">
-          <h3>Data <em>Intern</em></h3>
+          <h3>Lead Data <em>Engineer</em></h3>
           <div class="exp-meta">
-            <span>Manac Infotech Pvt Ltd, Hyderabad</span>
-            <span>Nov 2024 — Jan 2025</span>
+            <span>Infigrow Technologies Pvt Ltd · Insurance Premium &amp; Claims Analytics (Liberty Mutual)</span>
+            <span>Dec 2022 — Present</span>
           </div>
         </div>
         <ul class="exp-list">
-          <li>Built a Students Attendance Visualization system as part of the internship project, turning raw attendance data into clear, actionable visual reports.</li>
-          <li>Designed and developed interactive dashboards to track and present student attendance patterns across departments.</li>
-          <li>Worked under the guidance of Ms. Navya Thota, completing the assigned project well within the defined timeline.</li>
-          <li>Demonstrated strong ownership and work ethic — recognized for sincere and commendable conduct throughout the internship period.</li>
+          <li>Gathered business requirements (premium collected, active policies, branch-wise revenue, agent performance) and designed ETL data pipelines on an AWS medallion-architecture platform (S3, Databricks, Redshift).</li>
+          <li>Ingested customer, policy, claims, premium and lead data (CSV, JSON, Parquet) into the Amazon S3 Bronze layer.</li>
+          <li>Implemented incremental ingestion into the Silver layer using Databricks Auto Loader.</li>
+          <li>Developed PySpark and Spark SQL transformations for joins, deduplication, null handling and data quality checks.</li>
+          <li>Built Gold layer fact premium and claims tables in Amazon Redshift, and delivered validated datasets for Power BI and Tableau dashboards.</li>
         </ul>
         <div class="tag-row">
-          <span>Data Visualization</span><span>Python</span><span>Dashboards</span><span>Reporting</span>
+          <span>AWS</span><span>Databricks</span><span>PySpark</span><span>Redshift</span><span>Airflow</span><span>SQL</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <div class="rule"></div>
-
-  <!-- PROJECTS -->
-  <section class="section projects" id="projects">
-    <div class="sec-label">Projects</div>
-    <div class="sec-content proj-grid">
-
-      <a href="https://github.com/Jamal-2005" target="_blank" rel="noopener" class="proj-item">
-        <div class="proj-head">
-          <span class="proj-num">01</span>
-          <span class="proj-arr">↗</span>
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Associate Consultant — Data <em>Engineer</em></h3>
+          <div class="exp-meta">
+            <span>Infigrow Technologies Pvt Ltd · Sales Data Analytics (Wayfair)</span>
+            <span>Azure data platform</span>
+          </div>
         </div>
-        <h3>dbt Data<br><em>Pipeline</em></h3>
-        <p>Modular ELT pipeline on Snowflake using dbt Core, structured across 2 model layers — Staging (views) and Marts (tables). Includes reusable Jinja macros, type-2 SCD snapshots, generic + singular data tests, and seed-based reference data — all following dbt best practices.</p>
-        <div class="tag-row"><span>dbt</span><span>SQL</span><span>ELT</span><span>Data Modeling</span></div>
-      </a>
-
-      <a href="https://github.com/Jamal-2005" target="_blank" rel="noopener" class="proj-item">
-        <div class="proj-head">
-          <span class="proj-num">02</span>
-          <span class="proj-arr">↗</span>
+        <ul class="exp-list">
+          <li>Gathered requirements from business users and translated them into technical designs for data pipelines and ETL workflows.</li>
+          <li>Ingested raw CSV, JSON and Parquet data from multiple sources into the ADLS Gen2 Bronze (staging) layer.</li>
+          <li>Built ETL pipelines in Azure Data Factory to move data into the Silver layer, including movement between Azure services and on-premises sources.</li>
+          <li>Handled joins, null values, incremental loads, deduplication and complex JSON processing per client requirements.</li>
+          <li>Built the Gold (semantic/consumption) layer in Azure Synapse Analytics and delivered analytics-ready datasets for Power BI and Tableau reporting.</li>
+        </ul>
+        <div class="tag-row">
+          <span>Azure Data Factory</span><span>ADLS Gen2</span><span>Synapse</span><span>Medallion Architecture</span><span>Power BI</span>
         </div>
-        <h3>FMCG Data<br><em>Pipeline</em></h3>
-        <p>Production-grade Medallion Architecture pipeline (Bronze → Silver → Gold) on Databricks + Delta Lake, ingesting 4 data sources from Amazon S3. Processes 5 dimension tables and 1 fact table, handling 4 date formats, full and incremental daily loads, and SHA-256 generated product keys — all merged into a unified parent catalog via Delta MERGE.</p>
-        <div class="tag-row"><span>Databricks</span><span>PySpark</span><span>Workflows</span><span>ETL</span></div>
-      </a>
+      </div>
 
-      <a href="https://github.com/Jamal-2005" target="_blank" rel="noopener" class="proj-item">
-        <div class="proj-head">
-          <span class="proj-num">03</span>
-          <span class="proj-arr">↗</span>
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Data Engineering <em>Intern</em></h3>
+          <div class="exp-meta">
+            <span>Infigrow Technologies Pvt Ltd</span>
+            <span>Jul 2022 — Oct 2022</span>
+          </div>
         </div>
-        <h3>Used Cars<br><em>Analysis</em></h3>
-        <p>ML price predictor trained on 150 used car listings across 6 Indian cities. RandomForest Regressor (200 estimators, 7 features) achieves an MAE of ₹0.60 Lakhs on prices ranging ₹1–31.9 Lakhs. Ships with a live Streamlit web app for real-time predictions.</p>
-        <div class="tag-row"><span>Python</span><span>Machine Learning</span><span>Tableau</span></div>
-      </a>
-
-      <a href="https://github.com/Jamal-2005/Stock-price-Data-pipeline" target="_blank" rel="noopener" class="proj-item">
-        <div class="proj-head">
-          <span class="proj-num">04</span>
-          <span class="proj-featured-badge">Featured</span>
-          <span class="proj-arr">↗</span>
-        </div>
-        <div class="proj-body">
-          <h3>Stock Price<br><em>Data Pipeline</em></h3>
-          <p>End-to-end pipeline ingesting real-time data for 4 stocks (AAPL, MSFT, GOOGL, AMZN) via Yahoo Finance API. Applies 5 PySpark transformations — including 5-record and 20-record moving averages, volatility scoring, and BUY/SELL/HOLD signal generation — delivering structured JSON datasets for financial analysis in Databricks.</p>
-          <div class="tag-row"><span>Python</span><span>Databricks</span><span>ETL</span><span>JSON</span></div>
-        </div>
-      </a>
-
+      </div>
     </div>
   </section>
 
@@ -189,6 +165,8 @@
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="languages">Languages</button>
         <button class="filter-btn" data-filter="engineering">Engineering</button>
+        <button class="filter-btn" data-filter="bigdata">Big Data</button>
+        <button class="filter-btn" data-filter="genai">GenAI</button>
         <button class="filter-btn" data-filter="cloud">Cloud &amp; Tools</button>
         <button class="filter-btn" data-filter="certs">Certifications</button>
       </div>
@@ -199,11 +177,32 @@
         <span class="chip" data-cat="engineering">Apache Spark</span>
         <span class="chip" data-cat="engineering">PySpark</span>
         <span class="chip" data-cat="engineering">Databricks</span>
+        <span class="chip" data-cat="engineering">Auto Loader</span>
         <span class="chip" data-cat="engineering">dbt</span>
         <span class="chip" data-cat="engineering">ETL / ELT</span>
+        <span class="chip" data-cat="engineering">Medallion Architecture</span>
         <span class="chip" data-cat="engineering">Snowflake</span>
-        <span class="chip" data-cat="cloud">AWS</span>
+        <span class="chip" data-cat="engineering">Redshift</span>
+        <span class="chip" data-cat="engineering">Spark Memory Tuning</span>
+        <span class="chip" data-cat="bigdata">Hadoop</span>
+        <span class="chip" data-cat="bigdata">HDFS</span>
+        <span class="chip" data-cat="bigdata">MapReduce</span>
+        <span class="chip" data-cat="bigdata">Hive</span>
+        <span class="chip" data-cat="bigdata">HBase</span>
+        <span class="chip" data-cat="bigdata">Sqoop</span>
+        <span class="chip" data-cat="bigdata">Parquet / Avro / ORC</span>
+        <span class="chip" data-cat="genai">RAG Pipelines</span>
+        <span class="chip" data-cat="genai">LangChain</span>
+        <span class="chip" data-cat="genai">LangGraph</span>
+        <span class="chip" data-cat="genai">Vector Databases</span>
+        <span class="chip" data-cat="genai">Embedding Models</span>
+        <span class="chip" data-cat="cloud">AWS (S3, Glue, EMR, Athena, Lambda, EC2, IAM)</span>
+        <span class="chip" data-cat="cloud">Azure Data Factory</span>
+        <span class="chip" data-cat="cloud">ADLS Gen2</span>
+        <span class="chip" data-cat="cloud">Azure Synapse</span>
         <span class="chip" data-cat="cloud">Apache Airflow</span>
+        <span class="chip" data-cat="cloud">Power BI</span>
+        <span class="chip" data-cat="cloud">Tableau</span>
         <span class="chip" data-cat="cloud">Git</span>
         <span class="chip" data-cat="cloud">Unity Catalog</span>
         <span class="chip" data-cat="cloud">Confluence</span>
@@ -233,7 +232,7 @@
     </div>
     <script>
       (function() {
-        var u = 'syedmatin2511'; var d = 'gmail.com';
+        var u = 'syedmateen2511'; var d = 'gmail.com';
         var el = document.getElementById('contact-email-link');
         el.href = 'mailto:' + u + '@' + d;
         el.textContent = u + '@' + d + ' ↗';
@@ -243,8 +242,8 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <span>© 2025 Syed Jamal Ur Rahman</span>
-    <span>Data Engineer · Hyderabad, India</span>
+    <span>© 2026 Syed Jamal Ur Rahman</span>
+    <span>Lead Data Engineer · Hyderabad, India</span>
   </footer>
 
   <script src="script.js"></script>
